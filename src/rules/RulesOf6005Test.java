@@ -2,7 +2,6 @@
  * Redistribution of original or derived work requires permission of course staff.
  */
 package rules;
-
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -11,15 +10,26 @@ import org.junit.Test;
  * JUnit tests for RulesOf6005.
  */
 public class RulesOf6005Test {
-    
+   
     /**
      * Tests the mayUseCodeInAssignment method.
      */
-    @Test
-    public void testMayUseCodeInAssignment() {
-        assertFalse("Expected false: un-cited publicly-available code",
-                RulesOf6005.mayUseCodeInAssignment(false, true, false, false, false));
-        assertTrue("Expected true: self-written required code",
-                RulesOf6005.mayUseCodeInAssignment(true, false, true, true, true));
+	@Test
+    public void testWrittenByYourself() {
+        // Test case where code is written by yourself
+        assertTrue(RulesOf6005.mayUseCodeInAssignment(true, false, false, false, false));
     }
+
+    @Test
+    public void testWrittenAsCourseWork() {
+        // Test case where code is written as coursework
+        assertFalse(RulesOf6005.mayUseCodeInAssignment(false, false, true, false, false));
+    }
+
+    @Test
+    public void testAvailableToOthersAndCitingSource() {
+        // Test case where code is available to others and citing the source is true
+        assertTrue(RulesOf6005.mayUseCodeInAssignment(false, true, false, true, false));
+    }
+
 }

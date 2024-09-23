@@ -12,7 +12,7 @@ public class RulesOf6005 {
     /**
      * Judge whether a given piece of code may be used in an assignment (problem
      * set or team project) or not, according to the 6.005 collaboration policy.
-     * 
+     *
      * @param writtenByYourself true if the code in question was written by
      *        yourself or, in the case of a team project, your teammates,
      *        otherwise false.
@@ -32,20 +32,31 @@ public class RulesOf6005 {
      *         question in your assignment, according to the 6.005 collaboration
      *         policy for the current semester.
      */
-    public static boolean mayUseCodeInAssignment(boolean writtenByYourself,
-            boolean availableToOthers, boolean writtenAsCourseWork,
-            boolean citingYourSource, boolean implementationRequired) {
-        
-        // TODO: Fill in this method, then remove the exception
-        
-        throw new RuntimeException("implement me!");
-    }
-    
+public static boolean mayUseCodeInAssignment(boolean writtenByYourself,
+       boolean availableToOthers, boolean writtenAsCourseWork,
+       boolean citingYourSource, boolean implementationRequired) {
+   if (writtenByYourself)  {
+    return true;
+   }
+   if (writtenAsCourseWork) {
+    return false;
+   }
+
+   if (availableToOthers && !implementationRequired) {
+    return citingYourSource;
+   }
+   
+   return false;
+}
+
+
+
+   
     /**
      * Main method of the class.
-     * 
+     *
      * Runs the mayUseCodeInAssignment method.
-     * 
+     *
      * @param args unused
      */
     public static void main(String[] args) {
